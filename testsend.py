@@ -21,8 +21,8 @@ IPV4_IHL_VER = (IPV4_VERSION << 4) + IP_HEADER_LEN
 
 UDP_HEADER_LEN_BYTES = 8
 
-#IP = "20.0.0.33"
-host = "127.0.0.1"
+IP = "20.0.0.33"
+#host = "127.0.0.1"
 PORT = 1234
 interface= "ens3"
 class VXLAN(Structure):
@@ -423,9 +423,9 @@ def print_nsh_contextheader(nshcontextheader):
 def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    s.bind((host, PORT))
+    s.bind((IP, PORT))
     s.listen()
-    print(f'Listening for connections on {host}:{PORT}...')
+    print('Listening for connections on {host}:{PORT}...')
     print("Waiting for any incoming connection")
     conn, addr = s.accept()
     print(addr, "Has connected to the server")
