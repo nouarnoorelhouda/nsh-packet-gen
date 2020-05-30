@@ -307,9 +307,9 @@ def compute_internet_checksum(data):
         pad = bytearray(b'\x00')
     # for i in range(0, len(data + pad) - n, 2):
     for i in range(0, len(data)-1, 2):
-        checksum += (ord(data[i]) << 8) + (ord(data[i + 1]))
+        checksum += (data[i] << 8) + (data[i + 1])
     if n == 1:
-        checksum += (ord(data[len(data)-1]) << 8) + (pad[0])
+        checksum += (data[len(data)-1] << 8) + (pad[0])
     while checksum >> 16:
         checksum = (checksum & 0xFFFF) + (checksum >> 16)
     checksum = ~checksum & 0xffff
@@ -317,7 +317,7 @@ def compute_internet_checksum(data):
 
 # Implements int.from_bytes(s, byteorder='big')
 def int_from_bytes(s):
-    return sum(ord(c) << (i * 8) for i, c in enumerate(s[::-1]))
+    return sum(c << (i * 8) for i, c in enumerate(s[::-1]))
 
 def build_ethernet_header_swap(myethheader):
     """ Build Ethernet header """
