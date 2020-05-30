@@ -21,7 +21,7 @@ IPV4_IHL_VER = (IPV4_VERSION << 4) + IP_HEADER_LEN
 
 UDP_HEADER_LEN_BYTES = 8
 
-#IP = "20.0.0.33"
+IP = "20.0.0.33"
 PORT = 1234
 interface= "ens3"
 class VXLAN(Structure):
@@ -422,8 +422,8 @@ def print_nsh_contextheader(nshcontextheader):
 def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #host = input(str("please enter the host address of the sender : "))
-    port = 1234
-    s.connect(("127.0.0.1", 1111))
+    #port = 1234
+    s.connect((IP, PORT))
     print("connected...")
     # parser = argparse.ArgumentParser(description='This is a VxLAN/VxLAN-gpe + NSH dump and forward tool, you can use it to dump and forward VxLAN/VxLAN-gpe + NSH packets, it can also act as an NSH-aware SF for SFC test when you use --forward option, in that case, it will automatically decrease nsi by one.', prog='vxlan_tool.py')
     # parser.add_argument('-i', '--interface',
